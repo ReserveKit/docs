@@ -112,19 +112,19 @@ const config: Config = {
 					items: [
 						{
 							label: 'Introduction',
-							to: '/docs',
+							to: '/',
 						},
 						{
 							label: 'Getting Started',
-							to: '/docs/getting-started',
+							to: '/getting-started',
 						},
 						{
 							label: 'Authentication',
-							to: '/docs/authentication',
+							to: '/authentication',
 						},
 						{
 							label: 'API Reference',
-							to: '/docs/api',
+							to: '/api',
 						},
 					],
 				},

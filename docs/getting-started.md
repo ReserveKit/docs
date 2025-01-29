@@ -97,7 +97,7 @@ export const useService = () => {
 }
 ```
 
-**Note**: Refer to the [API Reference](/docs/api/#tag/services) for more information on
+**Note**: Refer to the [API Reference](/api/#tag/services) for more information on
 the response.
 
 ### 3.2 Get the time slots
@@ -139,7 +139,7 @@ export const useTimeSlots = () => {
 }
 ```
 
-**Note**: Refer to the [API Reference](/docs/api/#tag/time-slots) for more information on
+**Note**: Refer to the [API Reference](/api/#tag/time-slots) for more information on
 the response.
 
 ### 3.3 Create a Booking
@@ -176,7 +176,7 @@ export const useCreateBooking = () => {
 }
 ```
 
-**Note**: Refer to the [API Reference](/docs/api/#tag/bookings) for more information on
+**Note**: Refer to the [API Reference](/api/#tag/bookings) for more information on
 the response.
 
 ## 4. Connect your UI
@@ -298,5 +298,5 @@ export default App
 This guide walks you through setting up your environment to call ReserveKit
 API.
 
-If you have any questions, please refer to the [API Reference](/docs/api/) or
+If you have any questions, please refer to the [API Reference](/api/) or
 create an issue on [GitHub](https://github.com/qwerqy/reservekit-docs/issues).
