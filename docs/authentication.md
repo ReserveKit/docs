@@ -1,6 +1,8 @@
 ---
 id: authentication
 title: Authentication
+sidebar_position: 3
+slug: /authentication
 ---
 
 All requests to the ReserveKit API must include a valid API key. Our API keys

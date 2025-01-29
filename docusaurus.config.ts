@@ -14,7 +14,9 @@ const config: Config = {
 	url: 'https://reservekit.io',
 	// Set the /<baseUrl>/ pathname under which your site is served
 	// For GitHub pages deployment, it is often '/<projectName>/'
-	baseUrl: '/docs',
+	baseUrl: '/',
+
+	staticDirectories: ['static'],
 
 	// GitHub pages deployment config.
 	// If you aren't using GitHub pages, you don't need these.
@@ -75,7 +77,7 @@ const config: Config = {
 			title: 'ReserveKit Docs',
 			logo: {
 				alt: 'ReserveKit Logo',
-				src: 'img/logo.png',
+				src: '/img/logo.png',
 			},
 			items: [
 				{
@@ -84,7 +86,17 @@ const config: Config = {
 					position: 'left',
 					label: 'Docs',
 				},
-
+				{
+					href: '/api/',
+					sidebarId: 'api',
+					position: 'left',
+					label: 'API Reference',
+				},
+				{
+					href: 'https://reservekit.io',
+					label: 'Website',
+					position: 'right',
+				},
 				{
 					href: 'https://github.com/facebook/docusaurus',
 					label: 'GitHub',

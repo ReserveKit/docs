@@ -1,6 +1,8 @@
 ---
 id: getting-started
 title: Getting Started
+sidebar_position: 2
+slug: /getting-started
 ---
 
 This guide walks you through setting up your environment to call ReserveKit API.
