@@ -72,7 +72,7 @@ const config: Config = {
 
 	themeConfig: {
 		// Replace with your project's social card
-		image: 'img/docusaurus-social-card.jpg',
+		image: 'img/reservekit-og.png',
 		navbar: {
 			title: 'ReserveKit Docs',
 			logo: {
