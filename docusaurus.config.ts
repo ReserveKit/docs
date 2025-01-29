@@ -1,6 +1,7 @@
 import { themes as prismThemes } from 'prism-react-renderer'
 import type { Config } from '@docusaurus/types'
 import type * as Preset from '@docusaurus/preset-classic'
+import type * as Redocusaurus from 'redocusaurus'
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -46,6 +47,25 @@ const config: Config = {
 				blog: false,
 			} satisfies Preset.Options,
 		],
+
+		[
+			'redocusaurus',
+			{
+				// Plugin Options for loading OpenAPI files
+				specs: [
+					// You can also pass it a OpenAPI spec URL
+					{
+						spec: 'openapi/swagger.json',
+						route: '/api/',
+					},
+				],
+				// Theme Options for modifying how redoc renders them
+				theme: {
+					// Change with your site colors
+					primaryColor: '#1890ff',
+				},
+			},
+		] satisfies Redocusaurus.PresetEntry,
 	],
 
 	themeConfig: {
@@ -60,7 +80,7 @@ const config: Config = {
 			items: [
 				{
 					type: 'docSidebar',
-					sidebarId: 'tutorialSidebar',
+					sidebarId: 'docs',
 					position: 'left',
 					label: 'Docs',
 				},
@@ -79,8 +99,20 @@ const config: Config = {
 					title: 'Docs',
 					items: [
 						{
-							label: 'Tutorial',
-							to: '/docs/intro',
+							label: 'Introduction',
+							to: '/docs',
+						},
+						{
+							label: 'Getting Started',
+							to: '/docs/getting-started',
+						},
+						{
+							label: 'Authentication',
+							to: '/docs/authentication',
+						},
+						{
+							label: 'API Reference',
+							to: '/docs/api',
 						},
 					],
 				},
@@ -104,10 +136,6 @@ const config: Config = {
 				{
 					title: 'More',
 					items: [
-						{
-							label: 'Blog',
-							to: '/blog',
-						},
 						{
 							label: 'GitHub',
 							href: 'https://github.com/facebook/docusaurus',
