@@ -116,7 +116,7 @@ const config: Config = {
 						},
 						{
 							label: 'Getting Started',
-							to: '/getting-started',
+							to: '/category/getting-started',
 						},
 						{
 							label: 'Authentication',
