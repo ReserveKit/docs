@@ -1,8 +1,8 @@
 ---
-id: getting-started-with-npm
-title: Getting Started with NPM
+id: getting-started-with-web-sdk
+title: Getting Started with Web SDK
 sidebar_position: 1
-slug: /getting-started/npm
+slug: /getting-started/web
 ---
 
 This guide walks you through setting up your environment to call ReserveKit API using `reservekitjs`.
