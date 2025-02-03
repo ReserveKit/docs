@@ -7,6 +7,9 @@ slug: /getting-started/web
 
 This guide walks you through setting up your environment to call ReserveKit API using `reservekitjs`.
 
+> This SDK won't work in **NodeJS**, because of the usage of `fetch`. If you want to connect to the API from NodeJS, please connect using
+> [REST](/api).
+
 ## 1. Sign Up for an Account
 
 1. Go to [ReserveKit](https://app.reservekit.io) and create an account.

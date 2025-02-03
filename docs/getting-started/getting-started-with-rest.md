@@ -7,6 +7,10 @@ slug: /getting-started/rest
 
 This guide walks you through setting up your environment to call ReserveKit API.
 
+> This guide is sort of outdated, I will work on a new implementation soon. It is best practice to connect to the API in your backend. 
+> If you want to connect to the API, please connect using
+> [REST](/api).
+
 ## 1. Sign Up for an Account
 
 1. Go to [ReserveKit](https://app.reservekit.io) and create an account.
