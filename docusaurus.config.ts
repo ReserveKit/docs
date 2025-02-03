@@ -70,6 +70,16 @@ const config: Config = {
 		] satisfies Redocusaurus.PresetEntry,
 	],
 
+	plugins: [
+		[
+			'vercel-analytics',
+			{
+				debug: true,
+				mode: 'auto',
+			},
+		],
+	],
+
 	themeConfig: {
 		// Replace with your project's social card
 		image: 'img/reservekit-og.png',
