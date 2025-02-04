@@ -43,8 +43,7 @@ const config: Config = {
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
 					routeBasePath: '/',
-					editUrl:
-						'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+					editUrl: 'https://github.com/qwerqy/reservekit-docs/tree/main',
 				},
 				blog: false,
 			} satisfies Preset.Options,
