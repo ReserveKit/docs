@@ -39,19 +39,10 @@ First, import and initialize the ReserveKit client:
 ```typescript
 import { ReserveKit } from 'reservekitjs'
 
-// Initialize with your API key
-const client = new ReserveKit('your_api_key')
-```
+// Initialize with your API key and service ID
+const client = await ReserveKit.create('your_api_key', 1)
 
-### Initializing a Service
-
-Before making bookings or checking time slots, initialize a service:
-
-```typescript
-// Initialize service with ID
-await client.initService(1)
-
-// Access service information
+// Access service information immediately
 console.log(client.service.name)
 console.log(client.service.description)
 console.log(client.service.timezone)
@@ -107,16 +98,24 @@ const booking = await client.service.createBooking({
 
 ### ReserveKit Class
 
-#### Constructor
+#### Static Factory Method (Recommended)
 ```typescript
-new ReserveKit(secretKey: string, options?: ReserveKitOptions)
+static create(secretKey: string, serviceId: number, options?: ReserveKitOptions): Promise<ReserveKit>
 ```
 
 **Parameters:**
 - `secretKey` (required): Your ReserveKit API key
+- `serviceId` (required): The ID of the service to initialize
 - `options` (optional):
   - `host`: API host (default: 'https://api.reservekit.io')
   - `version`: API version (default: 'v1')
+
+#### Constructor (Alternative Method)
+```typescript
+new ReserveKit(secretKey: string, options?: ReserveKitOptions)
+```
+
+**Note:** When using the constructor directly, you'll need to call `initService(serviceId)` separately. It's recommended to use the static `create()` method instead for a better developer experience.
 
 ### Service Client
 
@@ -155,7 +154,7 @@ Use try-catch blocks for API calls:
 
 ```typescript
 try {
-  await client.initService(1)
+  const client = await ReserveKit.create('your_api_key', 1)
   const timeSlots = await client.service.getTimeSlots()
 } catch (error) {
   console.error('API Error:', error.message)
@@ -191,11 +190,9 @@ const bookingData: CreateBookingPayload = {
 import { ReserveKit } from 'reservekitjs'
 
 async function createServiceBooking() {
-  const client = new ReserveKit('your_api_key')
-  
   try {
-    // Initialize service
-    await client.initService(1)
+    // Initialize client with service
+    const client = await ReserveKit.create('your_api_key', 1)
     
     // Get available time slots
     const timeSlots = await client.service.getTimeSlots()
@@ -221,7 +218,7 @@ async function createServiceBooking() {
 ### Custom Configuration
 
 ```typescript
-const client = new ReserveKit('your_api_key', {
+const client = await ReserveKit.create('your_api_key', 1, {
   host: 'https://custom-api.example.com',
   version: 'v2'
 })
