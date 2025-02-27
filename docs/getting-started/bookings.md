@@ -2,7 +2,7 @@
 id: bookings
 title: Bookings
 sidebar_position: 5
-slug: /bookings
+slug: /getting-started/bookings
 ---
 
 Bookings represent scheduled appointments for your services. They connect customers to specific time slots on particular dates. The Bookings API allows you to create, retrieve, update, and delete bookings, as well as manage customer information associated with each booking.
@@ -481,4 +481,4 @@ Bookings can have one of the following statuses:
 
 ## Next Steps
 
-Now that you understand how to manage bookings, proceed to the [Webhooks](/webhooks) section to learn how to set up real-time notifications for booking events.
+Now that you understand how to manage bookings, proceed to the [Webhooks](/getting-started/webhooks) section to learn how to set up real-time notifications for booking events.

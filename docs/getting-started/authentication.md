@@ -2,7 +2,7 @@
 id: authentication
 title: Authentication
 sidebar_position: 2
-slug: /authentication
+slug: /getting-started/authentication
 ---
 
 
@@ -92,6 +92,7 @@ Common authentication errors:
 | 403 | Origin does not match API key domain | The request origin doesn't match the domain restriction |
 
 If you're experiencing authentication issues, check that:
+
 - You're using the correct API key format (including the prefix)
 - The API key hasn't been revoked
 - Your API key has access to the endpoint you're trying to reach

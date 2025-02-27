@@ -2,7 +2,7 @@
 id: next-js
 title: Next.js
 sidebar_position: 1
-slug: /explanation/next-js
+slug: /quick-start/next-js
 ---
 
 This guide will help you quickly integrate the ReserveKit JavaScript SDK (`reservekitjs`) with your Next.js 15 application. We'll cover setting up the SDK, fetching service information, displaying time slots, creating bookings, and implementing additional API endpoints that aren't covered by the library.

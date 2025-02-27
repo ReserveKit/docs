@@ -2,7 +2,7 @@
 id: services
 title: Services
 sidebar_position: 3
-slug: /services
+slug: /getting-started/services
 ---
 
 
@@ -345,4 +345,4 @@ curl -X GET "https://api.reservekit.io/v1/services/123/time-slots" \
 
 ## Next Steps
 
-Now that you've learned how to manage services, you can proceed to the [Time Slots](/time-slots) section to understand how to control availability in more detail, or the [Bookings](/bookings) section to learn how customers can book your services.
+Now that you've learned how to manage services, you can proceed to the [Time Slots](/getting-started/time-slots) section to understand how to control availability in more detail, or the [Bookings](/getting-started/bookings) section to learn how customers can book your services.

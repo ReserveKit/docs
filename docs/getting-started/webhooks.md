@@ -2,7 +2,7 @@
 id: webhooks
 title: Webhooks
 sidebar_position: 6
-slug: /webhooks
+slug: /getting-started/webhooks
 ---
 
 Webhooks allow your applications to receive real-time notifications when events occur in the ReserveKit system. Instead of continuously polling the API for updates, webhooks push data to your specified endpoints whenever relevant events happen, such as when bookings are created, updated, or cancelled.
@@ -245,4 +245,4 @@ If you're not receiving webhook events as expected:
 
 ## Next Steps
 
-Now that you understand how webhooks work in ReserveKit, proceed to the [Error Handling](/error-handling) section to learn about handling API errors or the [Rate Limits](/rate-limits) section to understand usage limitations.
+Now that you understand how webhooks work in ReserveKit, proceed to the [Error Handling](/getting-started/error-handling) section to learn about handling API errors or the [Rate Limits](/getting-started/rate-limits) section to understand usage limitations.

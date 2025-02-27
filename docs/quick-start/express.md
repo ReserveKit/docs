@@ -2,7 +2,7 @@
 id: express
 title: Express
 sidebar_position: 2
-slug: /explanation/express
+slug: /quick-start/express
 ---
 
 ## Prerequisites

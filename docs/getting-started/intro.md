@@ -67,13 +67,13 @@ https://api.reservekit.io/v1
 
 In the following sections, we'll explore:
 
-- **[Authentication](/authentication)**: Detailed information about API key management
-- **Services**: How to create and manage services
-- **Time Slots**: Managing availability through time slots
-- **Bookings**: Creating and managing bookings
-- **Webhooks**: Setting up notifications for booking events
-- **Error Handling**: Understanding API responses and error codes
-- **Rate Limits**: Information on usage limitations and best practices
+- **[Authentication](/getting-started/authentication)**: Detailed information about API key management
+- **[Services](/getting-started/services)**: How to create and manage services
+- **[Time Slots](/getting-started/time-slots)**: Managing availability through time slots
+- **[Bookings](/getting-started/bookings)**: Creating and managing bookings
+- **[Webhooks](/getting-started/webhooks)**: Setting up notifications for booking events
+- **[Error Handling](/getting-started/error-handling)**: Understanding API responses and error codes
+- **[Rate Limits](/getting-started/rate-limits)**: Information on usage limitations and best practices
 
 Let's begin building your scheduling system with Slottie API!
 

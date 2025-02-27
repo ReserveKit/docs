@@ -2,7 +2,7 @@
 id: time-slots
 title: Time Slots
 sidebar_position: 4
-slug: /time-slots
+slug: /getting-started/time-slots
 ---
 
 
@@ -322,4 +322,4 @@ Time slots use a specific format for time values:
 
 ## Next Steps
 
-Now that you understand how to manage time slots, proceed to the [Bookings](/bookings) section to learn how to create and manage bookings for your services.
+Now that you understand how to manage time slots, proceed to the [Bookings](/getting-started/bookings) section to learn how to create and manage bookings for your services.

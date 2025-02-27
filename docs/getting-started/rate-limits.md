@@ -2,7 +2,7 @@
 id: rate-limits
 title: Rate Limits
 sidebar_position: 8
-slug: /rate-limits
+slug: /getting-started/rate-limits
 ---
 
 ReserveKit implements rate limiting to ensure fair usage and system stability. These limits help maintain optimal performance for all users while preventing abuse. This page explains the rate limits that apply to your API requests and how to best work within these constraints.
@@ -228,4 +228,4 @@ Visit the [Pricing Page](https://reservekit.io/#pricing) or contact [amin@reserv
 
 ## Next Steps
 
-Now that you understand ReserveKit's rate limits, you can build a more resilient application that operates efficiently within these constraints. Check out the [Best Practices](/best-practices) section for more tips on optimizing your integration with ReserveKit.
+Now that you understand ReserveKit's rate limits, you can build a more resilient application that operates efficiently within these constraints. Check out the [Best Practices](/getting-started/best-practices) section for more tips on optimizing your integration with ReserveKit.

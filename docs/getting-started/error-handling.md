@@ -2,7 +2,7 @@
 id: error-handling
 title: Error Handling
 sidebar_position: 7
-slug: /error-handling
+slug: /getting-started/error-handling
 ---
 
 The ReserveKit API uses conventional HTTP response codes to indicate the success or failure of an API request. This guide explains how to interpret error responses and provides best practices for handling errors in your applications.
@@ -258,4 +258,4 @@ For requests that fail validation, the error response will often include details
 
 ## Next Steps
 
-Now that you understand how to handle errors from the ReserveKit API, proceed to the [Rate Limits](/rate-limits) section to learn about API usage limitations and best practices for staying within your plan's limits.
+Now that you understand how to handle errors from the ReserveKit API, proceed to the [Rate Limits](/getting-started/rate-limits) section to learn about API usage limitations and best practices for staying within your plan's limits.

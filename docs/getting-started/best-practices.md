@@ -2,7 +2,7 @@
 id: best-practices
 title: Best Practices
 position: 9
-slug: /best-practices
+slug: /getting-started/best-practices
 ---
 
 This guide provides recommended practices for integrating with the ReserveKit API. Following these guidelines will help you build a robust, efficient, and maintainable integration that provides the best experience for your users while minimizing potential issues.
