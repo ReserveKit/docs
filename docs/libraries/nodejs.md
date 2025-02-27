@@ -1,127 +1,260 @@
 ---
 id: nodejs-sdk
-title: ReserveKit Node.js SDK
+title: Node.js SDK
 sidebar_position: 1
 slug: /libraries/nodejs
 ---
 
-## Table of Contents
-
-1. [Installation](#installation)
-2. [Getting Started](#getting-started)
-3. [Core Concepts](#core-concepts)
-4. [API Reference](#api-reference)
-5. [Error Handling](#error-handling)
-6. [TypeScript Support](#typescript-support)
-7. [Examples](#examples)
+The ReserveKit JavaScript SDK provides a simple and intuitive interface for interacting with the ReserveKit API. This library makes it easy to integrate scheduling and booking functionality into your JavaScript and TypeScript applications, allowing you to manage services, time slots, and bookings with minimal code.
 
 ## Installation
 
-Install using your preferred package manager:
+You can install the ReserveKit JavaScript SDK using your preferred package manager:
 
 ```bash
-# npm
+# Using npm
 npm install reservekitjs
 
-# yarn
+# Using yarn
 yarn add reservekitjs
 
-# pnpm
+# Using pnpm
 pnpm add reservekitjs
 ```
 
 ## Getting Started
 
-### Basic Setup
+### Initializing the SDK
 
-First, import and initialize the ReserveKit client:
+The recommended way to initialize the SDK is using the static factory method:
 
-```typescript
-import { ReserveKit } from 'reservekitjs'
+```javascript
+import { ReserveKit } from 'reservekitjs';
 
-// Initialize with your API key and service ID
-const client = await ReserveKit.create('your_api_key', 1)
+// Initialize the client with your API key and service ID
+const client = await ReserveKit.create('your_api_key', 1);
 
-// Access service information immediately
-console.log(client.service.name)
-console.log(client.service.description)
-console.log(client.service.timezone)
+// Now you can access the service information
+console.log(client.service.name);
+console.log(client.service.description);
 ```
 
-## Core Concepts
+### Alternative Initialization
 
-### Services
+You can also use the constructor directly, but you'll need to call `initService()` separately:
 
-A service represents a bookable entity in your system. Each service has:
-- Unique identifier
-- Name and description
-- Time slots
-- Booking capabilities
+```javascript
+import { ReserveKit } from 'reservekitjs';
 
-### Time Slots
+// Create client instance with API key
+const client = new ReserveKit('your_api_key');
 
-Time slots represent available booking times for a service:
-
-```typescript
-// Get all available time slots for the service
-const timeSlots = await client.service.getTimeSlots()
-
-// Example time slot data
-console.log(timeSlots[0])
-/* Output:
-{
-  id: 1,
-  service_id: 1,
-  day_of_week: 1,
-  start_time: "2024-01-01T09:00:00",
-  end_time: "2024-01-01T10:00:00",
-  max_bookings: 5
-}
-*/
+// Initialize service separately
+await client.initService(1);
 ```
 
-### Creating Bookings
+> **Important:** Do not expose your API key in client-side code. The API key should only be used in server-side environments.
 
-To create a new booking:
+### Configuration Options
 
-```typescript
+When initializing the SDK, you can provide optional configuration:
+
+```javascript
+const options = {
+  host: 'https://api.reservekit.io', // Custom API host if needed
+  version: 'v1'                      // API version
+};
+
+const client = await ReserveKit.create('your_api_key', 1, options);
+```
+
+## Working with Services
+
+Once you've initialized the SDK with a service ID, you can access the service properties:
+
+```javascript
+// Access service properties
+const service = client.service;
+
+console.log(service.id);          // Service ID
+console.log(service.name);        // Service name
+console.log(service.description); // Service description
+console.log(service.provider_id); // Provider ID
+console.log(service.version);     // Service version
+console.log(service.created_at);  // Creation date
+console.log(service.updated_at);  // Last update date
+```
+
+## Managing Time Slots
+
+### Retrieving Time Slots
+
+You can fetch all available time slots for a service:
+
+```javascript
+// Get available time slots
+const timeSlots = await client.service.getTimeSlots();
+
+// Example of working with time slots
+timeSlots.forEach(slot => {
+  console.log(`Time Slot ID: ${slot.id}`);
+  console.log(`Day of Week: ${slot.day_of_week}`);
+  console.log(`Start Time: ${slot.start_time}`);
+  console.log(`End Time: ${slot.end_time}`);
+  console.log(`Max Bookings: ${slot.max_bookings}`);
+});
+```
+
+## Creating Bookings
+
+### Creating a New Booking
+
+You can create a new booking for a service using the `createBooking` method:
+
+```javascript
+// Create a booking
 const booking = await client.service.createBooking({
-  customer_name: "John Doe",
-  customer_email: "john@example.com",
-  customer_phone: "+1234567890",
-  date: "2024-01-01",
-  time_slot_id: 1
-})
+  customer_name: 'John Doe',
+  customer_email: 'john@example.com',
+  customer_phone: '+1234567890',
+  date: '2024-01-01',        // Can be a string in YYYY-MM-DD format
+  time_slot_id: 1            // ID of the time slot
+});
+
+console.log(`Booking created with ID: ${booking.id}`);
 ```
+
+### Booking Payload Structure
+
+The booking creation method accepts the following parameters:
+
+```typescript
+interface CreateBookingPayload {
+  customer_name?: string;    // Optional customer name
+  customer_email?: string;   // Optional customer email
+  customer_phone?: string;   // Optional customer phone
+  date: string | Date;       // Required booking date (string or Date object)
+  time_slot_id: number;      // Required time slot ID
+}
+```
+
+## Error Handling
+
+The SDK uses a consistent error handling pattern. It's recommended to wrap API calls in try-catch blocks:
+
+```javascript
+try {
+  const client = await ReserveKit.create('your_api_key', 1);
+  const timeSlots = await client.service.getTimeSlots();
+  console.log('Available time slots:', timeSlots);
+} catch (error) {
+  console.error('Error:', error.message);
+  // Handle the error appropriately
+}
+```
+
+## TypeScript Support
+
+This SDK is written in TypeScript and includes comprehensive type definitions. When using TypeScript in your project, you'll get full type support for all SDK methods and responses.
+
+```typescript
+import { ReserveKit, TimeSlot, Booking } from 'reservekitjs';
+
+// TypeScript will provide intellisense and type checking
+const client = await ReserveKit.create('your_api_key', 1);
+
+// TimeSlot type is inferred
+const timeSlots: TimeSlot[] = await client.service.getTimeSlots();
+
+// Booking type is inferred
+const booking: Booking = await client.service.createBooking({
+  customer_name: 'John Doe',
+  date: '2024-01-01',
+  time_slot_id: 1
+});
+```
+
+## Complete Example
+
+Here's a complete example showing how to initialize the SDK, fetch time slots, and create a booking:
+
+```javascript
+import { ReserveKit } from 'reservekitjs';
+
+async function main() {
+  try {
+    // Initialize the SDK
+    const client = await ReserveKit.create('your_api_key', 1);
+    
+    console.log(`Service: ${client.service.name}`);
+    
+    // Get available time slots
+    const timeSlots = await client.service.getTimeSlots();
+    console.log(`Found ${timeSlots.length} available time slots`);
+    
+    if (timeSlots.length > 0) {
+      // Create a booking with the first available time slot
+      const booking = await client.service.createBooking({
+        customer_name: 'John Doe',
+        customer_email: 'john@example.com',
+        customer_phone: '+1234567890',
+        date: '2024-01-01',
+        time_slot_id: timeSlots[0].id
+      });
+      
+      console.log('Booking created:', booking);
+    }
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}
+
+main();
+```
+
+## Best Practices
+
+1. **Server-Side Usage**: Keep your API key secure by only using it in server-side environments.
+2. **Error Handling**: Always implement proper error handling around SDK calls.
+3. **Validation**: Validate user inputs before passing them to the SDK methods.
+4. **Rate Limiting**: Be mindful of API rate limits and implement appropriate throttling if necessary.
 
 ## API Reference
 
 ### ReserveKit Class
 
-#### Static Factory Method (Recommended)
+#### Static Factory Method
+
 ```typescript
 static create(secretKey: string, serviceId: number, options?: ReserveKitOptions): Promise<ReserveKit>
 ```
 
-**Parameters:**
+Parameters:
 - `secretKey` (required): Your ReserveKit API key
 - `serviceId` (required): The ID of the service to initialize
-- `options` (optional):
+- `options` (optional): Configuration options
   - `host`: API host (default: 'https://api.reservekit.io')
   - `version`: API version (default: 'v1')
 
-#### Constructor (Alternative Method)
+Returns: A Promise that resolves to an initialized ReserveKit instance.
+
+#### Constructor
+
 ```typescript
 new ReserveKit(secretKey: string, options?: ReserveKitOptions)
 ```
 
-**Note:** When using the constructor directly, you'll need to call `initService(serviceId)` separately. It's recommended to use the static `create()` method instead for a better developer experience.
+#### Methods
+
+```typescript
+initService(serviceId: number): Promise<void>
+```
+Initializes a service by its ID. Returns a Promise that resolves when the service is loaded.
 
 ### Service Client
 
-After initialization, access service properties and methods through `client.service`:
-
 #### Properties
+
 - `id`: Service ID
 - `name`: Service name
 - `description`: Service description
@@ -132,102 +265,20 @@ After initialization, access service properties and methods through `client.serv
 
 #### Methods
 
-##### `getTimeSlots()`
-Returns a Promise that resolves to an array of available time slots.
+```typescript
+getTimeSlots(): Promise<TimeSlot[]>
+```
+Returns a Promise that resolves to an array of available time slots for the service.
 
-##### `createBooking(payload)`
+```typescript
+createBooking(payload: CreateBookingPayload): Promise<Booking>
+```
 Creates a new booking for the service.
-
-```typescript
-interface CreateBookingPayload {
-  customer_name?: string;
-  customer_email?: string;
-  customer_phone?: string;
-  date: string | Date;
-  time_slot_id: number;
-}
-```
-
-## Error Handling
-
-Use try-catch blocks for API calls:
-
-```typescript
-try {
-  const client = await ReserveKit.create('your_api_key', 1)
-  const timeSlots = await client.service.getTimeSlots()
-} catch (error) {
-  console.error('API Error:', error.message)
-}
-```
-
-**Common error scenarios:**
-- Invalid API key
-- Service not found
-- Network errors
-- Invalid booking parameters
-
-## TypeScript Support
-
-Full TypeScript support with type definitions:
-
-```typescript
-import { ReserveKit, CreateBookingPayload } from 'reservekitjs'
-
-const bookingData: CreateBookingPayload = {
-  customer_name: "Jane Doe",
-  customer_email: "jane@example.com",
-  date: new Date(),
-  time_slot_id: 1
-}
-```
-
-## Examples
-
-### Complete Booking Flow
-
-```typescript
-import { ReserveKit } from 'reservekitjs'
-
-async function createServiceBooking() {
-  try {
-    // Initialize client with service
-    const client = await ReserveKit.create('your_api_key', 1)
-    
-    // Get available time slots
-    const timeSlots = await client.service.getTimeSlots()
-    
-    // Create booking with first available slot
-    if (timeSlots.length > 0) {
-      const booking = await client.service.createBooking({
-        customer_name: "Alice Smith",
-        customer_email: "alice@example.com",
-        customer_phone: "+1234567890",
-        date: new Date().toISOString().split('T')[0],
-        time_slot_id: timeSlots[0].id
-      })
-      
-      console.log('Booking created:', booking)
-    }
-  } catch (error) {
-    console.error('Booking failed:', error.message)
-  }
-}
-```
-
-### Custom Configuration
-
-```typescript
-const client = await ReserveKit.create('your_api_key', 1, {
-  host: 'https://custom-api.example.com',
-  version: 'v2'
-})
-```
 
 ## Support
 
-For support or bug reports, please open an issue in the [GitHub repository](https://github.com/qwerqy/reservekitjs). For detailed API documentation, refer to the official ReserveKit API documentation.
+For support, please open an issue in the [GitHub repository](https://github.com/ReserveKit/reservekitjs).
 
----
+## License
 
-**Note:** Keep your API key secure and never expose it in client-side code.
+This SDK is licensed under the MIT License.

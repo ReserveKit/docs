@@ -59,9 +59,7 @@ const config: Config = {
 			'redocusaurus',
 			{
 				config: 'redocly.yaml',
-				// Plugin Options for loading OpenAPI files
 				specs: [
-					// You can also pass it a OpenAPI spec URL
 					{
 						id: 'api',
 						spec: 'https://api.reservekit.io/v1/swagger/doc.json',
