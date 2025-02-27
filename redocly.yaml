@@ -7,7 +7,7 @@ resolve:
     headers:
       - matches: https://api.reservekit.io/**
         name: Authorization
-        value: Basic YW1pbkByZXNlcnZla2l0LmlvOnJlc2VydmVraXQyMDI1
+        envVariable: RESERVEKIT_SWAGGER_TOKEN
 theme:
   # See https://redocly.com/docs/redoc/config/
   openapi:
