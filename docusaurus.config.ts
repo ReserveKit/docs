@@ -94,6 +94,7 @@ const config: Config = {
 				src: '/img/icon-light.png',
 				srcDark: '/img/icon-dark.png',
 			},
+			hideOnScroll: true,
 			items: [
 				{
 					type: 'docSidebar',
