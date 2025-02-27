@@ -46,6 +46,12 @@ const config: Config = {
 					editUrl: 'https://github.com/qwerqy/reservekit-docs/tree/main',
 				},
 				blog: false,
+				theme: {
+					customCss: [
+						require.resolve('./src/css/custom.css'),
+						require.resolve('./src/css/tailwind.css'),
+					],
+				},
 			} satisfies Preset.Options,
 		],
 
@@ -80,13 +86,13 @@ const config: Config = {
 	],
 
 	themeConfig: {
-		// Replace with your project's social card
 		image: 'img/reservekit-og.png',
 		navbar: {
 			title: 'ReserveKit Docs',
 			logo: {
 				alt: 'ReserveKit Logo',
-				src: '/img/logo.png',
+				src: '/img/icon-light.png',
+				srcDark: '/img/icon-dark.png',
 			},
 			items: [
 				{

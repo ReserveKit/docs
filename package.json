@@ -21,6 +21,7 @@
 		"@docusaurus/plugin-vercel-analytics": "^3.7.0",
 		"@docusaurus/preset-classic": "3.7.0",
 		"@mdx-js/react": "^3.0.0",
+		"@tailwindcss/postcss": "^4.0.9",
 		"@vercel/analytics": "^1.4.1",
 		"clsx": "^2.0.0",
 		"prism-react-renderer": "^2.3.0",
@@ -33,7 +34,10 @@
 		"@docusaurus/tsconfig": "3.7.0",
 		"@docusaurus/types": "3.7.0",
 		"@types/node": "^22.12.0",
+		"autoprefixer": "^10.4.20",
 		"dotenv": "^16.4.7",
+		"postcss": "^8.5.3",
+		"tailwindcss": "^4.0.9",
 		"typescript": "~5.6.2"
 	},
 	"browserslist": {
@@ -50,5 +54,6 @@
 	},
 	"engines": {
 		"node": ">=18.0"
-	}
+	},
+	"packageManager": "pnpm@8.9.2+sha512.b9d35fe91b2a5854dadc43034a3e7b2e675fa4b56e20e8e09ef078fa553c18f8aed44051e7b36e8b8dd435f97eb0c44c4ff3b44fc7c6fa7d21e1fac17bbe661e"
 }
