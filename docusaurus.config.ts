@@ -7,11 +7,12 @@ import type * as Redocusaurus from 'redocusaurus'
 
 const config: Config = {
 	title: 'ReserveKit Docs',
-	tagline: 'Documentation for ReserveKit',
+	tagline:
+		'Documentation for ReserveKit - Building blocks for your scheduling system',
 	favicon: 'img/favicon.ico',
 
 	// Set the production url of your site here
-	url: 'https://reservekit.io',
+	url: 'https://docs.reservekit.io',
 	// Set the /<baseUrl>/ pathname under which your site is served
 	// For GitHub pages deployment, it is often '/<projectName>/'
 	baseUrl: '/',
@@ -92,68 +93,8 @@ const config: Config = {
 				content:
 					'reserveKit, docs, scheduling, bookings, time Slots, services, api, documentation',
 			},
-			{
-				name: 'description',
-				content: 'Building blocks for your scheduling system',
-			},
-			{
-				name: 'author',
-				content: 'ReserveKit',
-			},
-			{
-				name: 'og:image',
-				content: '/img/reservekit-og.png',
-			},
-			{
-				name: 'og:title',
-				content: 'ReserveKit Docs',
-			},
-			{
-				name: 'og:description',
-				content: 'Building blocks for your scheduling system',
-			},
-			{
-				name: 'og:url',
-				content: 'https://docs.reservekit.io',
-			},
-			{
-				name: 'og:type',
-				content: 'website',
-			},
-			{
-				name: 'og:site_name',
-				content: 'ReserveKit Docs',
-			},
-			{
-				name: 'og:locale',
-				content: 'en_US',
-			},
-			{
-				name: 'twitter:card',
-				content: 'summary_large_image',
-			},
-			{
-				name: 'twitter:site',
-				content: '@reservekitio',
-			},
-			{
-				name: 'twitter:creator',
-				content: '@reservekitio',
-			},
-			{
-				name: 'twitter:title',
-				content: 'ReserveKit Docs',
-			},
-			{
-				name: 'twitter:description',
-				content: 'Building blocks for your scheduling system',
-			},
-			{
-				name: 'twitter:image',
-				content: '/img/reservekit-og.png',
-			},
 		],
-		image: '/img/reservekit-og.png',
+		image: 'img/reservekit-og.png',
 		navbar: {
 			title: 'ReserveKit Docs',
 			logo: {
