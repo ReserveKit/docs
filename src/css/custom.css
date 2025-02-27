@@ -1,3 +1,5 @@
+@import './tailwind.css';
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -11,25 +13,40 @@
 
 /* You can override the default Infima variables here. */
 :root {
-	--ifm-color-primary: #ea580c;
-	--ifm-color-primary-dark: #d24e0b;
-	--ifm-color-primary-darker: #bb450a;
-	--ifm-color-primary-darkest: #9a3908;
-	--ifm-color-primary-light: #fb6a1b;
-	--ifm-color-primary-lighter: #fc7c36;
-	--ifm-color-primary-lightest: #fd8f52;
+	--ifm-color-primary: hsl(var(--primary));
+	--ifm-color-primary-dark: hsl(var(--primary) / 0.8);
+	--ifm-color-primary-darker: hsl(var(--primary) / 0.6);
+	--ifm-color-primary-darkest: hsl(var(--primary) / 0.4);
+	--ifm-color-primary-light: hsl(var(--primary) / 0.6);
+	--ifm-color-primary-lighter: hsl(var(--primary) / 0.8);
+	--ifm-color-primary-lightest: hsl(var(--primary) / 0.6);
 	--ifm-code-font-size: 95%;
+	--ifm-navbar-background-color: hsl(var(--background));
+	--ifm-background-color: hsl(var(--background));
 	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+	--ifm-footer-background-color: hsl(var(--muted));
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-	--ifm-color-primary: #ea580c;
-	--ifm-color-primary-dark: #d24e0b;
-	--ifm-color-primary-darker: #bb450a;
-	--ifm-color-primary-darkest: #9a3908;
-	--ifm-color-primary-light: #fb6a1b;
-	--ifm-color-primary-lighter: #fc7c36;
-	--ifm-color-primary-lightest: #fd8f52;
+html[data-theme='dark'] {
+	--ifm-color-primary: hsl(var(--primary));
+	--ifm-color-primary-dark: hsl(var(--primary) / 0.8);
+	--ifm-color-primary-darker: hsl(var(--primary) / 0.6);
+	--ifm-color-primary-darkest: hsl(var(--primary) / 0.4);
+	--ifm-color-primary-light: hsl(var(--primary) / 0.6);
+	--ifm-color-primary-lighter: hsl(var(--primary) / 0.8);
+	--ifm-color-primary-lightest: hsl(var(--primary) / 0.6);
+	--ifm-navbar-background-color: hsl(var(--background));
+	--ifm-background-color: hsl(var(--background));
 	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+	--ifm-footer-background-color: hsl(var(--muted));
+}
+
+.footer--dark {
+	background-color: hsl(var(--muted));
+}
+
+.redoc-wrap .menu-content,
+.redoc-wrap .menu-content label {
+	background-color: hsl(var(--background));
 }

@@ -1,858 +1,819 @@
 {
-    "schemes": [],
-    "swagger": "2.0",
-    "info": {
-        "description": "Booking API for developers",
-        "title": "ReserveKit API",
-        "termsOfService": "http://swagger.io/terms/",
-        "contact": {
-            "name": "API Support",
-            "url": "https://www.reservekit.io/support",
-            "email": "support@reservekit.io"
-        },
-        "version": "1.0.0"
-    },
-    "host": "https://api.reservekit.io",
-    "basePath": "/v1",
-    "paths": {
-        "/bookings": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Get all booking for a service by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Bookings"
-                ],
-                "summary": "Get all bookings for a service",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Service ID",
-                        "name": "service_id",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Page",
-                        "name": "page",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Page Size",
-                        "name": "page_size",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/main.Envelope"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/store.BookingsWithPagination"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Creates a booking",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Bookings"
-                ],
-                "summary": "Creates a booking",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Service ID",
-                        "name": "service_id",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "description": "Create Booking Payload",
-                        "name": "payload",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/main.CreateBookingPayload"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/main.Envelope"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/store.Booking"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    }
-                }
-            }
-        },
-        "/bookings/{id}": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Get a booking by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Bookings"
-                ],
-                "summary": "Get a booking",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Booking ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/main.Envelope"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/store.Booking"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    }
-                }
-            }
-        },
-        "/services": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Get services by provider ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Services"
-                ],
-                "summary": "Get services",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Page",
-                        "name": "page",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Page Size",
-                        "name": "page_size",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/main.Envelope"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/store.ServicesWithPagination"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    }
-                }
-            }
-        },
-        "/services/{id}": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Get a service by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Services"
-                ],
-                "summary": "Get a service",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Service ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/main.Envelope"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/store.Service"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    }
-                }
-            }
-        },
-        "/time-slots": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Get time slots by service ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Time Slots"
-                ],
-                "summary": "Get time slots",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Service ID",
-                        "name": "service_id",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Page",
-                        "name": "page",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Page Size",
-                        "name": "page_size",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "boolean",
-                        "description": "No Pagination",
-                        "name": "no_pagination",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/main.Envelope"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/store.TimeSlotsWithPagination"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/main.ErrorEnvelope"
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "main.CreateBookingPayload": {
-            "type": "object",
-            "required": [
-                "date",
-                "time_slot_id"
-            ],
-            "properties": {
-                "customer_email": {
-                    "type": "string"
-                },
-                "customer_name": {
-                    "type": "string"
-                },
-                "customer_phone": {
-                    "type": "string"
-                },
-                "date": {
-                    "type": "string"
-                },
-                "time_slot_id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "main.Envelope": {
-            "type": "object",
-            "properties": {
-                "data": {},
-                "error": {
-                    "type": "string"
-                }
-            }
-        },
-        "main.ErrorEnvelope": {
-            "type": "object",
-            "properties": {
-                "data": {},
-                "error": {
-                    "type": "string"
-                }
-            }
-        },
-        "store.Booking": {
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "type": "string"
-                },
-                "customer": {
-                    "$ref": "#/definitions/store.Customer"
-                },
-                "customer_id": {
-                    "type": "integer"
-                },
-                "date": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "service_id": {
-                    "type": "integer"
-                },
-                "time_slot": {
-                    "$ref": "#/definitions/store.TimeSlot"
-                },
-                "time_slot_id": {
-                    "type": "integer"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "user_id": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "integer"
-                }
-            }
-        },
-        "store.BookingsWithPagination": {
-            "type": "object",
-            "properties": {
-                "bookings": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/store.Booking"
-                    }
-                },
-                "pagination": {
-                    "$ref": "#/definitions/store.Pagination"
-                }
-            }
-        },
-        "store.Customer": {
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "store.Package": {
-            "type": "object",
-            "properties": {
-                "bookings_per_month": {
-                    "type": "integer"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "overage_price_amount": {
-                    "type": "integer"
-                },
-                "overages_enabled": {
-                    "type": "boolean"
-                },
-                "price_amount": {
-                    "type": "integer"
-                },
-                "price_currency": {
-                    "type": "string"
-                },
-                "price_interval": {
-                    "type": "string"
-                },
-                "rate_limit_per_second": {
-                    "type": "integer"
-                },
-                "requests_per_month": {
-                    "type": "integer"
-                },
-                "services_limit": {
-                    "type": "integer"
-                },
-                "stripe_overage_price_id": {
-                    "type": "string"
-                },
-                "stripe_price_id": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "store.Pagination": {
-            "type": "object",
-            "properties": {
-                "page": {
-                    "type": "integer"
-                },
-                "page_size": {
-                    "type": "integer"
-                },
-                "total_items": {
-                    "type": "integer"
-                },
-                "total_pages": {
-                    "type": "integer"
-                }
-            }
-        },
-        "store.Role": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "level": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "store.Service": {
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "provider": {
-                    "$ref": "#/definitions/store.User"
-                },
-                "provider_id": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                },
-                "version": {
-                    "type": "integer"
-                }
-            }
-        },
-        "store.ServicesWithPagination": {
-            "type": "object",
-            "properties": {
-                "pagination": {
-                    "$ref": "#/definitions/store.Pagination"
-                },
-                "services": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/store.Service"
-                    }
-                }
-            }
-        },
-        "store.TimeSlot": {
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "type": "string"
-                },
-                "day_of_week": {
-                    "type": "integer"
-                },
-                "end_time": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "max_bookings": {
-                    "type": "integer"
-                },
-                "service_id": {
-                    "type": "integer"
-                },
-                "start_time": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "store.TimeSlotsWithPagination": {
-            "type": "object",
-            "properties": {
-                "pagination": {
-                    "$ref": "#/definitions/store.Pagination"
-                },
-                "time_slots": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/store.TimeSlot"
-                    }
-                }
-            }
-        },
-        "store.User": {
-            "type": "object",
-            "properties": {
-                "avatar": {
-                    "type": "string"
-                },
-                "created_at": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "is_verified": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "package": {
-                    "$ref": "#/definitions/store.Package"
-                },
-                "package_id": {
-                    "type": "integer"
-                },
-                "phone": {
-                    "type": "string"
-                },
-                "role": {
-                    "$ref": "#/definitions/store.Role"
-                },
-                "role_id": {
-                    "type": "integer"
-                },
-                "stripe_customer_id": {
-                    "type": "string"
-                },
-                "subscription_status": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
-                }
-            }
-        }
-    },
-    "securityDefinitions": {
-        "ApiKeyAuth": {
-            "description": "Bearer token for API authentication. Format: Bearer \u003ctoken\u003e",
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header"
-        },
-        "SessionCookieAuth": {
-            "description": "Session token for cookie-based authentication",
-            "type": "apiKey",
-            "name": "session_token",
-            "in": "cookie"
-        }
-    },
-    "tags": [
-        {
-            "description": "Services management endpoints",
-            "name": "Services"
-        },
-        {
-            "description": "Booking management endpoints",
-            "name": "Bookings"
-        },
-        {
-            "description": "Time slot management endpoints",
-            "name": "Time Slots"
-        }
-    ],
-    "x-envelope-error": {
-        "data": null,
-        "error": "Error message"
-    },
-    "x-envelope-pagination": {
-        "data": [
-            {
-                "field": "value"
-            }
-        ],
-        "error": null,
-        "metadata": {
-            "currentPage": 1,
-            "firstPage": 1,
-            "lastPage": 1,
-            "pageSize": 20,
-            "totalRecords": 0
-        }
-    },
-    "x-envelope-success": {
-        "data": {
-            "field": "value"
-        },
-        "error": null
-    }
+	"schemes": [],
+	"swagger": "2.0",
+	"info": {
+		"description": "Booking API for developers",
+		"title": "ReserveKit API",
+		"termsOfService": "http://swagger.io/terms/",
+		"contact": {
+			"name": "API Support",
+			"url": "https://www.reservekit.io/support",
+			"email": "support@reservekit.io"
+		},
+		"version": "1.0.0"
+	},
+	"host": "api.reservekit.io",
+	"basePath": "/v1",
+	"paths": {
+		"/bookings": {
+			"get": {
+				"security": [
+					{
+						"ApiKeyAuth": []
+					}
+				],
+				"description": "Get all booking for a service by ID",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"tags": ["Bookings"],
+				"summary": "Get all bookings for a service",
+				"parameters": [
+					{
+						"type": "integer",
+						"description": "Service ID",
+						"name": "service_id",
+						"in": "query",
+						"required": true
+					},
+					{
+						"type": "integer",
+						"description": "Page",
+						"name": "page",
+						"in": "query",
+						"required": true
+					},
+					{
+						"type": "integer",
+						"description": "Page Size",
+						"name": "page_size",
+						"in": "query",
+						"required": true
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/definitions/main.Envelope"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"data": {
+											"$ref": "#/definitions/store.BookingsWithPagination"
+										}
+									}
+								}
+							]
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					}
+				}
+			},
+			"post": {
+				"security": [
+					{
+						"ApiKeyAuth": []
+					}
+				],
+				"description": "Creates a booking",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"tags": ["Bookings"],
+				"summary": "Creates a booking",
+				"parameters": [
+					{
+						"type": "integer",
+						"description": "Service ID",
+						"name": "service_id",
+						"in": "query",
+						"required": true
+					},
+					{
+						"description": "Create Booking Payload",
+						"name": "payload",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/main.CreateBookingPayload"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/definitions/main.Envelope"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"data": {
+											"$ref": "#/definitions/store.Booking"
+										}
+									}
+								}
+							]
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					}
+				}
+			}
+		},
+		"/bookings/{id}": {
+			"get": {
+				"security": [
+					{
+						"ApiKeyAuth": []
+					}
+				],
+				"description": "Get a booking by ID",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"tags": ["Bookings"],
+				"summary": "Get a booking",
+				"parameters": [
+					{
+						"type": "integer",
+						"description": "Booking ID",
+						"name": "id",
+						"in": "path",
+						"required": true
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/definitions/main.Envelope"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"data": {
+											"$ref": "#/definitions/store.Booking"
+										}
+									}
+								}
+							]
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					}
+				}
+			}
+		},
+		"/services": {
+			"get": {
+				"security": [
+					{
+						"ApiKeyAuth": []
+					}
+				],
+				"description": "Get services by provider ID",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"tags": ["Services"],
+				"summary": "Get services",
+				"parameters": [
+					{
+						"type": "integer",
+						"description": "Page",
+						"name": "page",
+						"in": "query",
+						"required": true
+					},
+					{
+						"type": "integer",
+						"description": "Page Size",
+						"name": "page_size",
+						"in": "query",
+						"required": true
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/definitions/main.Envelope"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"data": {
+											"$ref": "#/definitions/store.ServicesWithPagination"
+										}
+									}
+								}
+							]
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					}
+				}
+			}
+		},
+		"/services/{id}": {
+			"get": {
+				"security": [
+					{
+						"ApiKeyAuth": []
+					}
+				],
+				"description": "Get a service by ID",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"tags": ["Services"],
+				"summary": "Get a service",
+				"parameters": [
+					{
+						"type": "integer",
+						"description": "Service ID",
+						"name": "id",
+						"in": "path",
+						"required": true
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/definitions/main.Envelope"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"data": {
+											"$ref": "#/definitions/store.Service"
+										}
+									}
+								}
+							]
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					}
+				}
+			}
+		},
+		"/time-slots": {
+			"get": {
+				"security": [
+					{
+						"ApiKeyAuth": []
+					}
+				],
+				"description": "Get time slots by service ID",
+				"consumes": ["application/json"],
+				"produces": ["application/json"],
+				"tags": ["Time Slots"],
+				"summary": "Get time slots",
+				"parameters": [
+					{
+						"type": "string",
+						"description": "Service ID",
+						"name": "service_id",
+						"in": "query",
+						"required": true
+					},
+					{
+						"type": "integer",
+						"description": "Page",
+						"name": "page",
+						"in": "query",
+						"required": true
+					},
+					{
+						"type": "integer",
+						"description": "Page Size",
+						"name": "page_size",
+						"in": "query",
+						"required": true
+					},
+					{
+						"type": "boolean",
+						"description": "No Pagination",
+						"name": "no_pagination",
+						"in": "query"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"allOf": [
+								{
+									"$ref": "#/definitions/main.Envelope"
+								},
+								{
+									"type": "object",
+									"properties": {
+										"data": {
+											"$ref": "#/definitions/store.TimeSlotsWithPagination"
+										}
+									}
+								}
+							]
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"schema": {
+							"$ref": "#/definitions/main.ErrorEnvelope"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"main.CreateBookingPayload": {
+			"type": "object",
+			"required": ["date", "time_slot_id"],
+			"properties": {
+				"customer_email": {
+					"type": "string"
+				},
+				"customer_name": {
+					"type": "string"
+				},
+				"customer_phone": {
+					"type": "string"
+				},
+				"date": {
+					"type": "string"
+				},
+				"time_slot_id": {
+					"type": "integer"
+				}
+			}
+		},
+		"main.Envelope": {
+			"type": "object",
+			"properties": {
+				"data": {},
+				"error": {
+					"type": "string"
+				}
+			}
+		},
+		"main.ErrorEnvelope": {
+			"type": "object",
+			"properties": {
+				"data": {},
+				"error": {
+					"type": "string"
+				}
+			}
+		},
+		"store.Booking": {
+			"type": "object",
+			"properties": {
+				"created_at": {
+					"type": "string"
+				},
+				"customer": {
+					"$ref": "#/definitions/store.Customer"
+				},
+				"customer_id": {
+					"type": "integer"
+				},
+				"date": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer"
+				},
+				"service_id": {
+					"type": "integer"
+				},
+				"time_slot": {
+					"$ref": "#/definitions/store.TimeSlot"
+				},
+				"time_slot_id": {
+					"type": "integer"
+				},
+				"updated_at": {
+					"type": "string"
+				},
+				"user_id": {
+					"type": "string"
+				},
+				"version": {
+					"type": "integer"
+				}
+			}
+		},
+		"store.BookingsWithPagination": {
+			"type": "object",
+			"properties": {
+				"bookings": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/store.Booking"
+					}
+				},
+				"pagination": {
+					"$ref": "#/definitions/store.Pagination"
+				}
+			}
+		},
+		"store.Customer": {
+			"type": "object",
+			"properties": {
+				"created_at": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer"
+				},
+				"name": {
+					"type": "string"
+				},
+				"phone": {
+					"type": "string"
+				},
+				"updated_at": {
+					"type": "string"
+				}
+			}
+		},
+		"store.Package": {
+			"type": "object",
+			"properties": {
+				"bookings_per_month": {
+					"type": "integer"
+				},
+				"created_at": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer"
+				},
+				"name": {
+					"type": "string"
+				},
+				"overage_price_amount": {
+					"type": "integer"
+				},
+				"overages_enabled": {
+					"type": "boolean"
+				},
+				"price_amount": {
+					"type": "integer"
+				},
+				"price_currency": {
+					"type": "string"
+				},
+				"price_interval": {
+					"type": "string"
+				},
+				"rate_limit_per_second": {
+					"type": "integer"
+				},
+				"requests_per_month": {
+					"type": "integer"
+				},
+				"services_limit": {
+					"type": "integer"
+				},
+				"stripe_overage_price_id": {
+					"type": "string"
+				},
+				"stripe_price_id": {
+					"type": "string"
+				},
+				"updated_at": {
+					"type": "string"
+				}
+			}
+		},
+		"store.Pagination": {
+			"type": "object",
+			"properties": {
+				"page": {
+					"type": "integer"
+				},
+				"page_size": {
+					"type": "integer"
+				},
+				"total_items": {
+					"type": "integer"
+				},
+				"total_pages": {
+					"type": "integer"
+				}
+			}
+		},
+		"store.Role": {
+			"type": "object",
+			"properties": {
+				"description": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer"
+				},
+				"level": {
+					"type": "integer"
+				},
+				"name": {
+					"type": "string"
+				}
+			}
+		},
+		"store.Service": {
+			"type": "object",
+			"properties": {
+				"created_at": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer"
+				},
+				"name": {
+					"type": "string"
+				},
+				"provider": {
+					"$ref": "#/definitions/store.User"
+				},
+				"provider_id": {
+					"type": "string"
+				},
+				"updated_at": {
+					"type": "string"
+				},
+				"version": {
+					"type": "integer"
+				}
+			}
+		},
+		"store.ServicesWithPagination": {
+			"type": "object",
+			"properties": {
+				"pagination": {
+					"$ref": "#/definitions/store.Pagination"
+				},
+				"services": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/store.Service"
+					}
+				}
+			}
+		},
+		"store.TimeSlot": {
+			"type": "object",
+			"properties": {
+				"created_at": {
+					"type": "string"
+				},
+				"day_of_week": {
+					"type": "integer"
+				},
+				"end_time": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer"
+				},
+				"max_bookings": {
+					"type": "integer"
+				},
+				"service_id": {
+					"type": "integer"
+				},
+				"start_time": {
+					"type": "string"
+				},
+				"updated_at": {
+					"type": "string"
+				}
+			}
+		},
+		"store.TimeSlotsWithPagination": {
+			"type": "object",
+			"properties": {
+				"pagination": {
+					"$ref": "#/definitions/store.Pagination"
+				},
+				"time_slots": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/store.TimeSlot"
+					}
+				}
+			}
+		},
+		"store.User": {
+			"type": "object",
+			"properties": {
+				"avatar": {
+					"type": "string"
+				},
+				"created_at": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"id": {
+					"type": "string"
+				},
+				"is_verified": {
+					"type": "boolean"
+				},
+				"name": {
+					"type": "string"
+				},
+				"package": {
+					"$ref": "#/definitions/store.Package"
+				},
+				"package_id": {
+					"type": "integer"
+				},
+				"phone": {
+					"type": "string"
+				},
+				"role": {
+					"$ref": "#/definitions/store.Role"
+				},
+				"role_id": {
+					"type": "integer"
+				},
+				"stripe_customer_id": {
+					"type": "string"
+				},
+				"subscription_status": {
+					"type": "string"
+				},
+				"updated_at": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"securityDefinitions": {
+		"ApiKeyAuth": {
+			"description": "Bearer token for API authentication. Format: Bearer \u003ctoken\u003e",
+			"type": "apiKey",
+			"name": "Authorization",
+			"in": "header"
+		},
+		"SessionCookieAuth": {
+			"description": "Session token for cookie-based authentication",
+			"type": "apiKey",
+			"name": "session_token",
+			"in": "cookie"
+		}
+	},
+	"tags": [
+		{
+			"description": "Services management endpoints",
+			"name": "Services"
+		},
+		{
+			"description": "Booking management endpoints",
+			"name": "Bookings"
+		},
+		{
+			"description": "Time slot management endpoints",
+			"name": "Time Slots"
+		}
+	],
+	"x-envelope-error": {
+		"data": null,
+		"error": "Error message"
+	},
+	"x-envelope-pagination": {
+		"data": [
+			{
+				"field": "value"
+			}
+		],
+		"error": null,
+		"metadata": {
+			"currentPage": 1,
+			"firstPage": 1,
+			"lastPage": 1,
+			"pageSize": 20,
+			"totalRecords": 0
+		}
+	},
+	"x-envelope-success": {
+		"data": {
+			"field": "value"
+		},
+		"error": null
+	}
 }

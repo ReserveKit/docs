@@ -1,0 +1,20 @@
+extends:
+  - recommended
+rules:
+  no-unused-components: error
+resolve:
+  http:
+    headers:
+      - matches: https://api.reservekit.io/**
+        name: Authorization
+        value: Basic YW1pbkByZXNlcnZla2l0LmlvOnJlc2VydmVraXQyMDI1
+theme:
+  # See https://redocly.com/docs/redoc/config/
+  openapi:
+    hideDownloadButton: true
+    hideHostname: false
+    disableSearch: true
+    # See https://redocly.com/docs/api-reference-docs/configuration/theming/
+    theme:
+      rightPanel:
+        backgroundColor: 'hsl(12 6.5% 15.1%)'

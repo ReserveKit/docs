@@ -58,18 +58,20 @@ const config: Config = {
 		[
 			'redocusaurus',
 			{
+				config: 'redocly.yaml',
 				// Plugin Options for loading OpenAPI files
 				specs: [
 					// You can also pass it a OpenAPI spec URL
 					{
-						spec: 'openapi/swagger.json',
+						id: 'api',
+						spec: 'https://api.reservekit.io/v1/swagger/doc.json',
 						route: '/api/',
 					},
 				],
 				// Theme Options for modifying how redoc renders them
 				theme: {
 					// Change with your site colors
-					primaryColor: '#1890ff',
+					primaryColor: 'hsl(24.6 95% 53.1%)',
 				},
 			},
 		] satisfies Redocusaurus.PresetEntry,
