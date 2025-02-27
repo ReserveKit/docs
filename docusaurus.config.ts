@@ -86,7 +86,74 @@ const config: Config = {
 	],
 
 	themeConfig: {
-		image: 'img/reservekit-og.png',
+		metadata: [
+			{
+				name: 'keywords',
+				content:
+					'reserveKit, docs, scheduling, bookings, time Slots, services, api, documentation',
+			},
+			{
+				name: 'description',
+				content: 'Building blocks for your scheduling system',
+			},
+			{
+				name: 'author',
+				content: 'ReserveKit',
+			},
+			{
+				name: 'og:image',
+				content: '/img/reservekit-og.png',
+			},
+			{
+				name: 'og:title',
+				content: 'ReserveKit Docs',
+			},
+			{
+				name: 'og:description',
+				content: 'Building blocks for your scheduling system',
+			},
+			{
+				name: 'og:url',
+				content: 'https://docs.reservekit.io',
+			},
+			{
+				name: 'og:type',
+				content: 'website',
+			},
+			{
+				name: 'og:site_name',
+				content: 'ReserveKit Docs',
+			},
+			{
+				name: 'og:locale',
+				content: 'en_US',
+			},
+			{
+				name: 'twitter:card',
+				content: 'summary_large_image',
+			},
+			{
+				name: 'twitter:site',
+				content: '@reservekitio',
+			},
+			{
+				name: 'twitter:creator',
+				content: '@reservekitio',
+			},
+			{
+				name: 'twitter:title',
+				content: 'ReserveKit Docs',
+			},
+			{
+				name: 'twitter:description',
+				content: 'Building blocks for your scheduling system',
+			},
+			{
+				name: 'twitter:image',
+				content: '/img/reservekit-og.png',
+			},
+		],
+		image: '/img/reservekit-og.png',
 		navbar: {
 			title: 'ReserveKit Docs',
 			logo: {
@@ -121,7 +188,6 @@ const config: Config = {
 			],
 		},
 		footer: {
-			style: 'dark',
 			links: [
 				{
 					title: 'Docs',
@@ -132,15 +198,27 @@ const config: Config = {
 						},
 						{
 							label: 'Getting Started',
-							to: '/category/getting-started',
+							to: '/',
 						},
 						{
-							label: 'Authentication',
-							to: '/authentication',
+							label: 'Node.js Library',
+							to: '/libraries/nodejs',
+						},
+						{
+							label: 'Go Library',
+							to: '/libraries/go',
+						},
+						{
+							label: 'NextJS Quickstart',
+							to: '/quick-start/next-js',
+						},
+						{
+							label: 'Express Quickstart',
+							to: '/quick-start/express',
 						},
 						{
 							label: 'API Reference',
-							to: '/api',
+							to: '/api/',
 						},
 					],
 				},
@@ -163,6 +241,14 @@ const config: Config = {
 						{
 							label: 'GitHub',
 							href: 'https://github.com/ReserveKit/docs',
+						},
+						{
+							label: 'Website',
+							href: 'https://reservekit.io',
+						},
+						{
+							label: 'Dashboard',
+							href: 'https://app.reservekit.io',
 						},
 					],
 				},

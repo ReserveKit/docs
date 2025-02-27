@@ -27,7 +27,7 @@ A time slot object contains the following properties:
 
 ## Creating Time Slots
 
-Time slots are typically created when you create a service. See the [Services documentation](/services) for details on creating services with time slots.
+Time slots are typically created when you create a service. See the [Services](/getting-started/services) documentation for details on creating services with time slots.
 
 However, you can also add time slots to an existing service by updating the service with new time slots.
 

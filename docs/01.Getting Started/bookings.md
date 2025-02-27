@@ -448,7 +448,7 @@ curl -X PATCH "https://api.reservekit.io/v1/bookings/789/customer" \
 
 ## Webhooks for Bookings
 
-Bookings support webhook notifications when events occur. See the [Webhooks](/webhooks) section for details on how to set up webhook notifications for booking events.
+Bookings support webhook notifications when events occur. See the [Webhooks](/getting-started/webhooks) section for details on how to set up webhook notifications for booking events.
 
 ## Booking Statuses
 
